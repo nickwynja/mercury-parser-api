@@ -34,7 +34,7 @@ router.route('/parse-html').post(async (req, res) => {
     if (req.body.url && req.body.html) {
         try {
             result = await Mercury.parse(req.body.url, {
-              html: req.body.html
+                html: req.body.html,
             });
         } catch (error) {
             result = { error: true, messages: error.message };
