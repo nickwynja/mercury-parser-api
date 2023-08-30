@@ -24,13 +24,8 @@ const EconomistExtractor = {
   content: {
     selectors: ['div[class*="layout-article-body"]'],
 
-    // Is there anything in the content you selected that needs transformed
-    // before it's consumable content? E.g., unusual lazy loaded images
     transforms: {},
 
-    // Is there anything that is in the result that shouldn't be?
-    // The clean selectors will remove anything that matches from
-    // the result
     clean: ['.layout-article-links'],
   },
 };
@@ -61,15 +56,10 @@ const GqExtractor = {
   content: {
     selectors: ['div[class*="content-background"]'],
 
-    // Is there anything in the content you selected that needs transformed
-    // before it's consumable content? E.g., unusual lazy loaded images
     transforms: {
       noscript: 'div',
     },
 
-    // Is there anything that is in the result that shouldn't be?
-    // The clean selectors will remove anything that matches from
-    // the result
     clean: ['aside[class*="pullquote-embed"'],
   },
 };
@@ -97,15 +87,10 @@ const NewYorkerExtractor = {
       'article[class*="main-content"] div[data-attribute-verso-pattern="article-body"]',
     ],
 
-    // Is there anything in the content you selected that needs transformed
-    // before it's consumable content? E.g., unusual lazy loaded images
     transforms: {
       noscript: 'div',
     },
 
-    // Is there anything that is in the result that shouldn't be?
-    // The clean selectors will remove anything that matches from
-    // the result
     clean: [
       'footer[class^="ArticleFooter__footer"]',
       'div[class*="social-icons"]',
@@ -254,13 +239,8 @@ const TheAtlanticExtractor = {
   content: {
     selectors: ['article', '#main-article', '.article-body'],
 
-    // Is there anything in the content you selected that needs transformed
-    // before it's consumable content? E.g., unusual lazy loaded images
     transforms: [],
 
-    // Is there anything that is in the result that shouldn't be?
-    // The clean selectors will remove anything that matches from
-    // the result
     clean: [
       'div[class^="ArticleLeadArt"]',
       'article>header',
@@ -319,13 +299,8 @@ const WiredExtractor = {
       // enter content selectors
     ],
 
-    // Is there anything in the content you selected that needs transformed
-    // before it's consumable content? E.g., unusual lazy loaded images
     transforms: [],
 
-    // Is there anything that is in the result that shouldn't be?
-    // The clean selectors will remove anything that matches from
-    // the result
     clean: [
       '.visually-hidden',
       'figcaption img.photo',
@@ -353,6 +328,23 @@ const WiredExtractor = {
   excerpt: null,
 };
 
+const PaulGrahamExtractor = {
+  domain : 'paulgraham.com',
+  author: "Paul Graham",
+  content: {
+    selectors: [
+      ['table table font']
+    ],
+
+    defaultCleaner: false,
+
+    transforms: {
+      table: 'div',
+    },
+  }
+};
+
+
 function customize(parser) {
   parser.addExtractor(EconomistExtractor);
   parser.addExtractor(GqExtractor);
@@ -360,6 +352,7 @@ function customize(parser) {
   parser.addExtractor(NYTimesExtractor);
   parser.addExtractor(TheAtlanticExtractor);
   parser.addExtractor(WiredExtractor);
+  parser.addExtractor(PaulGrahamExtractor);
 }
 
 module.exports = { customize };
