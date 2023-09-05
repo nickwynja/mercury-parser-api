@@ -344,6 +344,26 @@ const PaulGrahamExtractor = {
   }
 };
 
+const LinkedInExtractor = {
+  domain : 'linkedin.com',
+  defaultCleaner: false,
+
+  content: {
+    selectors: [
+      ['section.mb-3 > article > div.attributed-text-segment-list__container.relative > p'],
+    ],
+
+    clean: [
+      '.comment',
+      '.comment-with-action',
+      '.comment__text',
+      'section.related-posts'
+    ],
+
+
+  }
+};
+
 
 function customize(parser) {
   parser.addExtractor(EconomistExtractor);
@@ -353,6 +373,7 @@ function customize(parser) {
   parser.addExtractor(TheAtlanticExtractor);
   parser.addExtractor(WiredExtractor);
   parser.addExtractor(PaulGrahamExtractor);
+  parser.addExtractor(LinkedInExtractor);
 }
 
 module.exports = { customize };
